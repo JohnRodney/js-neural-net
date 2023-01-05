@@ -1,6 +1,6 @@
 import NeuralNetowrk from "./NeuralNet";
 
-const neuralNetConfig = [10, 10, 10];
+const neuralNetConfig = [784, 16, 16, 10];
 describe("NeuralNet", () => {
   // Test the default construction portion of the neural network
   it("should create a neural net", () => {

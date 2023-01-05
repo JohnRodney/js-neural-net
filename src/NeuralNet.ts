@@ -5,13 +5,43 @@ import { AWeight, Layer } from "./types";
 export class Neuron {
   id: number;
   weights: AWeight[];
+  threshold: number;
+  bias: number;
+  output: number;
 
   constructor() {
     this.weights = [] as AWeight[];
     this.id = Math.random();
+    this.threshold = Math.random();
+    this.bias = Math.random();
+    this.output = 0;
   }
 
-  setupWeights(prevLayer: Layer) {
+  activationFunction(input: Neuron[]) {
+    // Get the sum of the inputs
+    const sum: number = input.reduce((acc, curr) => {
+      // Get the weight of the neuron
+      const weight = this.weights.find((weight) => weight.id === curr.id)?.weight;
+      // Check if the weight is undefined
+      if (weight === undefined) {
+        // If it is undefined, throw an error
+        throw new Error("Weight is undefined");
+      }
+      // Return the accumulator plus the weight times the output of the neuron 
+      return acc + weight * curr.output;
+    }, 0);
+
+    // Return the sigmoid of the sum
+    return this.sigmoid(sum);
+  }
+
+  // sigmoid function
+  sigmoid(input: number) {
+    const inputRange = 10000; 
+    return 1 / (1 + Math.exp(-input/inputRange));
+  }
+
+  setupWeights(prevLayer: Neuron[]) {
     this.weights = prevLayer.map((neuron) => ({ 
       id: neuron.id,
       ownerId: this.id,

@@ -1,5 +1,27 @@
 # JS Neural Network
 
+A work in progress for increasing my understanding of AI and neural networks.
+
+# Running Locally
+So far no depencies.  Just dev depencies to transpile, test, and type the network code.
+Available yarn commands: 
+```javascript
+  "test": "jest"
+  "start:dev" : "npx nodemon",
+  "build": "rimraf ./build && tsc",
+  "start": "yarn build && node ./build/index.js",
+  "view-docs": "mdstart readme.md"
+```
+`start:dev` - To keep the server running and listening to changes use start:dev
+
+`start` - to build and run once use start.
+
+`test` - Testing is done using jest to ensure all the proper properties are initialized and all the correct connections are made between the layers.
+
+`view-docs` - a dev server to view readme markdown locally.
+
+## Purpose
+
 Implimentation of a basic data structure that mimics a neural net.
 ```js
 {
